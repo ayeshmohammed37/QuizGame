@@ -51,6 +51,68 @@
                 "Mars",
                 "Charles Babbage"
             };
+
+            Console.WriteLine("Welcome to the game");
+            Console.WriteLine("----------------------");
+            Console.WriteLine("Please Answer the following questions: ");
+
+            int score = 0;
+            for (int i = 0; i < questions.Length; i++)
+            {
+                Console.WriteLine($"{i+1}. {questions[i]}");
+
+                string userAns = Console.ReadLine();
+
+                try
+                {
+                    if (CheckAns(answers[i], userAns))
+                    {
+                        Console.WriteLine("True");
+                        score++;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"False. the right answer is: {answers[i]}");
+                    }
+                    Console.WriteLine();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    //Console.WriteLine("Enter the Answer: ");
+                    //userAns = Console.ReadLine();
+
+                    //if (CheckAns(answers[i], userAns))
+                    //{
+                    //    Console.WriteLine("True");
+                    //}
+                    //else
+                    //{
+                    //    Console.WriteLine($"False. the right answer is: {answers[i]}");
+                    //}
+                    //Console.WriteLine();
+                }
+
+                
+            }
+
+            Console.WriteLine($"you answred({score}/20)");
+            Console.WriteLine("Game is ended. back again (^_^)");
+
+        }
+
+        private static bool CheckAns(string ans, string userAns)
+        {
+            if (string.IsNullOrEmpty(userAns))
+            {
+                throw new Exception("Answer can't be Empty");
+            }
+
+            if (ans == userAns)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
